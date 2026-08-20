@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITIL Foundation V5 — บทที่ 1 สรุป</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EFF3F2;
+    --paper: #FFFFFF;
+    --ink: #16231F;
+    --ink-soft: #4B5C57;
+    --line: #DCE4E1;
+    --teal: #0F6E64;
+    --teal-deep: #0A4A44;
+    --amber: #B5651D;
+    --amber-soft: #F3E3D3;
+    --teal-soft: #E1EEEC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px 80px;}
+
+  /* HERO */
+  header.hero{
+    padding:64px 24px 48px;
+    max-width:880px;
+    margin:0 auto;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal-deep);
+    background:var(--teal-soft);
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:3px;
+    margin-bottom:22px;
+  }
+  h1.title{
+    font-family:'IBM Plex Serif', serif;
+    font-weight:600;
+    font-size:clamp(32px, 5vw, 46px);
+    line-height:1.15;
+    margin:0 0 14px;
+    color:var(--teal-deep);
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--amber);
+  }
+  .subtitle{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:620px;
+    margin:0;
+  }
+  .hero-rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--teal) 0%, var(--line) 40%);
+    margin-top:40px;
+  }
+
+  /* SECTION CARD */
+  section.card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:32px 34px;
+    margin-top:22px;
+  }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+    color:#fff;
+    background:var(--teal);
+    padding:3px 9px;
+    border-radius:3px;
+    flex-shrink:0;
+  }
+  h2.sec-title{
+    font-family:'IBM Plex Serif', serif;
+    font-weight:600;
+    font-size:22px;
+    margin:0;
+    color:var(--ink);
+  }
+  p{margin:0 0 12px; color:var(--ink-soft); font-size:15.5px;}
+  p:last-child{margin-bottom:0;}
+  p strong{color:var(--ink); font-weight:600;}
+
+  /* TERM BADGE — signature element */
+  .term{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:.92em;
+    color:var(--teal-deep);
+    background:var(--teal-soft);
+    border:1px solid #C7DEDA;
+    padding:1px 7px;
+    border-radius:4px;
+    white-space:nowrap;
+  }
+
+  /* EXAMPLE BOX */
+  .example{
+    margin-top:16px;
+    background:var(--amber-soft);
+    border-left:3px solid var(--amber);
+    border-radius:0 6px 6px 0;
+    padding:14px 18px;
+  }
+  .example .ex-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:600;
+    display:block;
+    margin-bottom:6px;
+  }
+  .example p{color:#5A3E23; font-size:14.5px; margin:0;}
+
+  /* Four dimensions grid */
+  .dim-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+    margin-top:16px;
+  }
+  .dim{
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:12px 14px;
+    background:#FAFCFB;
+  }
+  .dim .dim-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+    color:var(--teal-deep);
+    display:block;
+    margin-bottom:3px;
+  }
+  .dim p{font-size:13.5px; margin:0;}
+
+  /* Books row */
+  .book-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:10px;
+    margin-top:16px;
+  }
+  .book{
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:12px 14px;
+    text-align:center;
+    background:#FAFCFB;
+  }
+  .book .b-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--teal-deep);
+  }
+  .book p{font-size:12.5px; margin-top:4px;}
+
+  /* Cast list */
+  .cast{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+    gap:12px;
+    margin-top:16px;
+  }
+  .person{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:14px;
+    background:#FAFCFB;
+  }
+  .person .p-name{
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--teal-deep);
+  }
+  .person .p-role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--amber);
+    display:block;
+    margin-bottom:6px;
+  }
+  .person p{font-size:13px; margin:0;}
+
+  /* footer */
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  footer .term{margin:0 2px;}
+
+  @media (max-width:560px){
+    .dim-grid{grid-template-columns:1fr;}
+    section.card{padding:24px 20px;}
+    header.hero{padding:44px 20px 32px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="eyebrow">ITIL Foundation · Version 5 · Chapter 1</span>
+  <h1 class="title">จาก IT Service<br>สู่ <em>Digital Product &amp; Service</em></h1>
+  <p class="subtitle">สรุปบทที่ 1 "Introduction" ฉบับภาษาไทย เก็บศัพท์เทคนิคภาษาอังกฤษไว้ พร้อมตัวอย่างประกอบทุกหัวข้อ — เขียนสำหรับสายวิศวกรที่กำลังเรียนต่อด้าน IT Management ค่ะ</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="wrap">
+
+  <!-- 1.1 -->
+  <section class="card">
+    <div class="sec-head">
+      <span class="sec-num">1.1</span>
+      <h2 class="sec-title">โลกกำลังเปลี่ยนวิธีบริหารเทคโนโลยี</h2>
+    </div>
+    <p>เดิมโลกอยู่ในยุค <span class="term">Industry 4.0</span> ที่เน้น automation และ productivity เป็นหลัก แต่ตอนนี้กำลังเคลื่อนเข้าสู่ยุค <span class="term">Industry 5.0</span> ที่ให้ความสำคัญกับ <strong>คน (human-centricity)</strong> ความยั่งยืน (sustainability) และความยืดหยุ่นต่อการเปลี่ยนแปลง (resilience) มากขึ้น</p>
+    <p>ความสัมพันธ์ระหว่างคนกับเทคโนโลยีก็เปลี่ยนไปด้วย จากเดิมที่ "คน<em>ควบคุม</em>เทคโนโลยี" กลายเป็น "คน<em>ทำงานร่วมกับ</em>เทคโนโลยี" และแนวทางบริหารก็เปลี่ยนตาม เช่น จากเน้น output ไปเน้น value/experience, จากทำงานแยกส่วน (silo) ไปสู่การร่วมมือข้ามทีม</p>
+    <div class="example">
+      <span class="ex-label">ตัวอย่าง</span>
+      <p>ทีม Network เดิมอาจวัดผลแค่ "uptime กี่เปอร์เซ็นต์" (Industry 4.0 mindset) แต่ยุคใหม่จะมองว่า "ผู้ใช้งานรู้สึกอย่างไรตอนใช้ระบบ" ด้วย ไม่ใช่แค่ตัวเลขทางเทคนิคอย่างเดียว</p>
+    </div>
+  </section>
+
+  <!-- 1.2 -->
+  <section class="card">
+    <div class="sec-head">
+      <span class="sec-num">1.2</span>
+      <h2 class="sec-title">ITIL คืออะไร — และทำไมไม่ใช่แค่ "IT" อีกต่อไป</h2>
+    </div>
+    <p><span class="term">ITIL</span> เริ่มต้นในยุค 1980s จากหน่วยงานรัฐบาลอังกฤษ (CCTA) ที่ต้องการมาตรฐานกลางในการบริหาร IT เดิมชื่อเต็มคือ "IT Infrastructure Library" แต่ตั้งแต่กว่า 10 ปีที่แล้ว <strong>"ITIL" เลิกเป็นตัวย่อแล้ว</strong> — กลายเป็นแบรนด์เต็มตัวของแนวปฏิบัติที่ดีด้าน service management ระดับโลก</p>
+    <p>ปัจจุบัน ITIL ขยายขอบเขตไปไกลกว่า IT แล้ว กลายเป็นกรอบสำหรับ <span class="term">Digital Product and Service Management (DPSM)</span> เพราะคำว่า "digital" ครอบคลุมกว้างกว่าคำว่า "IT" — มันรวมถึงการเปลี่ยนแปลงองค์กร วัฒนธรรม และวิธีที่ลูกค้ามีส่วนร่วม ไม่ใช่แค่ตัวเทคโนโลยีอย่างเดียว</p>
+    <p>ส่วนที่เพิ่ม "product and service" เข้ามาด้วยกัน ก็เพื่อป้องกันไม่ให้ทีม <span class="term">Product Management</span> (ทีมที่โฟกัสสร้างสินค้า) กับทีม <span class="term">Service Management</span> (ทีมที่โฟกัสดูแลบริการ) แยกกันทำงานจนเกิด silo ซ้ำอีกรอบ</p>
+    <div class="example">
+      <span class="ex-label">ตัวอย่าง</span>
+      <p>แอปธนาคารบนมือถือ คือ "Digital Product" ที่ทีม Product สร้างขึ้น ส่วนการที่แอปทำงานได้ 24 ชั่วโมง เซิร์ฟเวอร์ไม่ล่ม คือฝั่ง "Service" — ITIL บอกว่าสองฝั่งนี้ต้องบริหารไปด้วยกัน ไม่ใช่แยกทีมกันคิดคนละทาง</p>
+    </div>
+
+    <p style="margin-top:20px;"><strong>ITIL แบ่งเนื้อหาออกเป็น 4 Official Books หลัก:</strong></p>
+    <div class="book-row">
+      <div class="book"><span class="b-title">ITIL Strategy</span><p>วางกลยุทธ์ดิจิทัลขององค์กร</p></div>
+      <div class="book"><span class="b-title">ITIL Product</span><p>คิดค้น สร้าง ส่งมอบ digital product</p></div>
+      <div class="book"><span class="b-title">ITIL Service</span><p>ส่งมอบบริการคุณภาพ ดูแล user</p></div>
+      <div class="book"><span class="b-title">ITIL Experience</span><p>ดูแลประสบการณ์ของคนทุกฝ่าย</p></div>
+    </div>
+    <p style="margin-top:14px; font-size:14px;">นอกจากนี้ยังมี <span class="term">ITIL Transformation</span> (คู่มือสำหรับการเปลี่ยนแปลงองค์กร) และ <span class="term">ITIL AI Governance</span> (คู่มือกำกับดูแลการใช้ AI/LLM อย่างปลอดภัย) เป็นส่วนเสริม</p>
+  </section>
+
+  <!-- ecosystem -->
+  <section class="card">
+    <div class="sec-head">
+      <span class="sec-num">1.2.2</span>
+      <h2 class="sec-title">ITIL Ecosystem — ไม่ใช่แค่หนังสือ</h2>
+    </div>
+    <p>ITIL ไม่ได้มีแค่เนื้อหาตำรา แต่มี ecosystem รองรับ เช่น <span class="term">Members Community</span> (ชุมชนออนไลน์ + webinar + PeopleCert Library) และ <span class="term">Partner Programmes</span> ซึ่งแบ่งเป็น 3 กลุ่ม: <span class="term">ATO</span> (สอน/อบรม), <span class="term">ACP</span> (ที่ปรึกษาประเมินความพร้อมองค์กร), และ <span class="term">ATV</span> (บริษัทพัฒนา tool ที่รองรับ ITIL)</p>
+    <p>ITIL ยังแบ่งกลุ่มองค์กรเป้าหมายเป็น 4 แบบ: <strong>Enterprises</strong> (องค์กรทั่วไปที่ใช้เทคโนโลยีสนับสนุนธุรกิจหลัก เช่น ธนาคาร), <strong>Managed Service Providers</strong> (รับจ้างดูแล service ให้องค์กรอื่น), <strong>Digital Product Organizations</strong> (ธุรกิจหลักคือสร้าง digital product เช่น startup แอป), และ <strong>Consultants</strong></p>
+  </section>
+
+  <!-- 1.3 key concepts -->
+  <section class="card">
+    <div class="sec-head">
+      <span class="sec-num">1.3</span>
+      <h2 class="sec-title">4 โมเดลหลักที่ต้องรู้จัก</h2>
+    </div>
+    <p>บทนี้แนะนำโมเดลหลัก 4 อย่างที่บทถัดไปจะเจาะลึก:</p>
+
+    <p style="margin-top:14px;"><strong>1) ITIL Four Dimensions</strong> — 4 มิติที่ต้องดูแลพร้อมกันเพื่อสร้าง value</p>
+    <div class="dim-grid">
+      <div class="dim"><span class="dim-title">Organizations &amp; People</span><p>โครงสร้างทีม วัฒนธรรม ทักษะคน</p></div>
+      <div class="dim"><span class="dim-title">Information &amp; Technology</span><p>ระบบ ข้อมูล เครื่องมือที่ใช้</p></div>
+      <div class="dim"><span class="dim-title">Partners &amp; Suppliers</span><p>ความสัมพันธ์กับผู้ให้บริการภายนอก</p></div>
+      <div class="dim"><span class="dim-title">Value Streams &amp; Processes</span><p>ขั้นตอนการทำงานจริงที่สร้างคุณค่า</p></div>
+    </div>
+
+    <p style="margin-top:20px;"><strong>2) ITIL Product and Service Lifecycle Model (PSLM)</strong> — โมเดลวงจรชีวิตของ product/service ตั้งแต่เริ่มจนสิ้นสุด</p>
+    <p><strong>3) ITIL Value System (ITIL VS)</strong> — ระบบ governance + management รวมกัน ประกอบด้วย 5 ส่วน: <span class="term">Guiding Principles</span>, <span class="term">Governance</span>, <span class="term">Value Chain</span>, <span class="term">Practices</span> (มีทั้งหมด 34 practices), และ <span class="term">Continual Improvement</span></p>
+    <p><strong>4) Value Streams</strong> — การนำ Lifecycle Model ไปปรับใช้จริงในบริบทเฉพาะขององค์กร แล้ว map + วิเคราะห์ + ปรับปรุงต่อเนื่อง</p>
+
+    <div class="example">
+      <span class="ex-label">ตัวอย่าง</span>
+      <p>ถ้าเทียบกับงาน Network: <span class="term">Practices</span> ก็เหมือน "playbook" แต่ละเรื่อง เช่น Incident Management practice, Change Enablement practice ส่วน <span class="term">Value Chain</span> คือภาพรวมว่ากิจกรรมทั้งหมดเรียงร้อยกันอย่างไรเพื่อส่งมอบบริการให้ลูกค้า</p>
+    </div>
+  </section>
+
+  <!-- scenario -->
+  <section class="card">
+    <div class="sec-head">
+      <span class="sec-num">1.5</span>
+      <h2 class="sec-title">ITIL Car Rental — เคสตัวอย่างที่ใช้ตลอดเล่ม</h2>
+    </div>
+    <p>ITIL ใช้บริษัทสมมติชื่อ <strong>ITIL Car Rental (ICR)</strong> เป็นเคสตัวอย่างประกอบทุกบท (ไม่ใช้ในข้อสอบ แต่ช่วยให้เห็นภาพ) เนื้อเรื่องคือบริษัทเช่ารถที่กำลังโดน disrupt จากคู่แข่งใหม่ (car-sharing, rideshare, รถไร้คนขับ) จึงต้องเร่ง digital transformation โดยมี CIO คนใหม่ชื่อ Max เป็นผู้นำการเปลี่ยนแปลง</p>
+    <div class="cast">
+      <div class="person"><span class="p-name">Max</span><span class="p-role">CIO</span><p>นำทัพ digital transformation เชื่อในแนวทางแบบผสมผสาน (blended DPSM)</p></div>
+      <div class="person"><span class="p-name">Anna</span><span class="p-role">Product Manager</span><p>โฟกัส B2C และประสบการณ์ลูกค้า</p></div>
+      <div class="person"><span class="p-name">Maria</span><span class="p-role">Business Analyst</span><p>เชื่อมโยง IT กับฝั่งธุรกิจ</p></div>
+      <div class="person"><span class="p-name">Omar</span><span class="p-role">IT Delivery Manager</span><p>ดูแล service delivery ประจำวัน</p></div>
+      <div class="person"><span class="p-name">Sam</span><span class="p-role">Head of Product Dev.</span><p>คุม product lifecycle ทั้งหมด</p></div>
+      <div class="person"><span class="p-name">Alex</span><span class="p-role">Enterprise Architect</span><p>ดูแล architecture ให้สอดคล้อง sustainable</p></div>
+    </div>
+    <div class="example">
+      <span class="ex-label">ทำไมต้องมีเคสนี้</span>
+      <p>เพราะ ITIL เป็น framework นามธรรม การมีตัวละครและสถานการณ์จริงช่วยให้เห็นว่าคอนเซปต์ เช่น Value Chain หรือ Four Dimensions ถูกนำไปใช้ในสถานการณ์ทำงานจริงอย่างไร คล้ายๆ การใช้ lab scenario ตอนเตรียมสอบ CCNA ค่ะ</p>
+    </div>
+  </section>
+
+  <footer>
+    สรุปจาก <span class="term">ITIL Foundation (V5)</span> · Chapter 1 — จัดทำเพื่อการทบทวนส่วนตัว
+  </footer>
+
+</div>
+</body>
+</html>

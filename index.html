@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITIL Foundation V5 — เลือกหัวข้อเรียน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EFF3F2;
+    --paper:#FFFFFF;
+    --ink:#16231F;
+    --ink-soft:#4B5C57;
+    --line:#DCE4E1;
+    --teal:#0F6E64;
+    --teal-deep:#0A4A44;
+    --amber:#B5651D;
+    --amber-soft:#F3E3D3;
+    --teal-soft:#E1EEEC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Thai', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px 80px;}
+  header.hero{padding:64px 24px 44px; max-width:880px; margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal-deep);
+    background:var(--teal-soft);
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:3px;
+    margin-bottom:22px;
+  }
+  h1.title{
+    font-family:'IBM Plex Serif', serif;
+    font-weight:600;
+    font-size:clamp(32px, 5vw, 46px);
+    line-height:1.15;
+    margin:0 0 14px;
+    color:var(--teal-deep);
+  }
+  h1.title em{font-style:italic; font-weight:500; color:var(--amber);}
+  .subtitle{font-size:16.5px; color:var(--ink-soft); max-width:620px; margin:0;}
+  .hero-rule{height:1px; background:linear-gradient(90deg,var(--teal) 0%,var(--line) 40%); margin-top:36px;}
+  .topic-list{display:grid; gap:14px;}
+  .topic{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:18px;
+    padding:24px 26px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:inherit;
+    text-decoration:none;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .topic:hover,.topic:focus-visible{
+    border-color:var(--teal);
+    box-shadow:0 8px 22px rgba(15,110,100,.11);
+    transform:translateY(-2px);
+    outline:none;
+  }
+  .topic-number{
+    display:grid;
+    place-items:center;
+    width:48px;
+    height:48px;
+    border-radius:6px;
+    background:var(--teal);
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px;
+    font-weight:600;
+  }
+  .topic-content h2{
+    font-family:'IBM Plex Serif', serif;
+    font-size:22px;
+    font-weight:600;
+    line-height:1.25;
+    margin:0 0 4px;
+    color:var(--ink);
+  }
+  .topic-content p{font-size:14.5px; color:var(--ink-soft); margin:0;}
+  .topic-arrow{font-size:26px; color:var(--amber); line-height:1;}
+  footer{text-align:center; margin-top:40px; color:var(--ink-soft); font-size:13px;}
+  footer .term{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    color:var(--teal-deep);
+    background:var(--teal-soft);
+    border:1px solid #C7DEDA;
+    padding:1px 7px;
+    border-radius:4px;
+  }
+  @media (max-width:560px){
+    header.hero{padding:44px 20px 32px;}
+    section.topic-list{padding:0;}
+    .topic{grid-template-columns:auto 1fr; gap:14px; padding:20px;}
+    .topic-arrow{grid-column:2; margin-top:-8px;}
+    .wrap{padding:0 20px 60px;}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="eyebrow">ITIL Foundation · Version 5</span>
+  <h1 class="title">เลือกหัวข้อ<br><em>ที่ต้องการเรียนรู้</em></h1>
+  <p class="subtitle">เลือกบทเรียนเพื่อเปิดสรุปเนื้อหาในแท็บใหม่ และกลับมาที่หน้านี้เพื่อเลือกหัวข้ออื่นได้ตลอดเวลา</p>
+  <div class="hero-rule"></div>
+</header>
+
+<main class="wrap">
+  <section class="topic-list" aria-label="รายการบทเรียน">
+    <a class="topic" href="itil_ch1_summary.html" target="_blank" rel="noopener">
+      <span class="topic-number">01</span>
+      <span class="topic-content">
+        <h2>บทที่ 1 — Introduction</h2>
+        <p>ทำความเข้าใจโลก IT Service ในยุค Industry 5.0 และแนวคิด Digital Product &amp; Service</p>
+      </span>
+      <span class="topic-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="topic" href="itil_ch2_summary.html" target="_blank" rel="noopener">
+      <span class="topic-number">02</span>
+      <span class="topic-content">
+        <h2>บทที่ 2 — Four Dimensions</h2>
+        <p>เรียนรู้ 4 มิติของการจัดการ Product &amp; Service พร้อมตัวอย่างจาก ITIL Car Rental</p>
+      </span>
+      <span class="topic-arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <footer>สรุปจาก <span class="term">ITIL Foundation (V5)</span> · จัดทำเพื่อการทบทวนส่วนตัว</footer>
+</main>
+</body>
+</html>

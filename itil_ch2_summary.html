@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITIL Foundation V5 — บทที่ 2: Four Dimensions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EFF3F2;
+    --paper: #FFFFFF;
+    --ink: #16231F;
+    --ink-soft: #4B5C57;
+    --line: #DCE4E1;
+    --teal: #0F6E64;
+    --teal-deep: #0A4A44;
+    --amber: #B5651D;
+    --amber-soft: #F3E3D3;
+    --teal-soft: #E1EEEC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Thai', sans-serif; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px 80px;}
+
+  header.hero{padding:64px 24px 44px; max-width:900px; margin:0 auto;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal-deep); background:var(--teal-soft); display:inline-block; padding:5px 12px; border-radius:3px; margin-bottom:22px;}
+  h1.title{font-family:'IBM Plex Serif', serif; font-weight:600; font-size:clamp(30px,4.6vw,44px); line-height:1.16; margin:0 0 14px; color:var(--teal-deep);}
+  h1.title em{font-style:italic; font-weight:500; color:var(--amber);}
+  .subtitle{font-size:16px; color:var(--ink-soft); max-width:640px; margin:0;}
+  .hero-rule{height:1px; background:linear-gradient(90deg, var(--teal) 0%, var(--line) 40%); margin-top:36px;}
+
+  /* nav dots */
+  nav.toc{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  nav.toc a{font-family:'IBM Plex Mono', monospace; font-size:11.5px; text-decoration:none; color:var(--teal-deep); background:var(--teal-soft); border:1px solid #C7DEDA; padding:4px 10px; border-radius:20px;}
+
+  section.card{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:32px 34px; margin-top:22px; scroll-margin-top:20px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:16px;}
+  .sec-num{font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600; color:#fff; background:var(--teal); padding:3px 9px; border-radius:3px; flex-shrink:0;}
+  h2.sec-title{font-family:'IBM Plex Serif', serif; font-weight:600; font-size:22px; margin:0; color:var(--ink);}
+  h3.sub-title{font-family:'IBM Plex Serif', serif; font-weight:600; font-size:16.5px; margin:20px 0 8px; color:var(--teal-deep);}
+  p{margin:0 0 12px; color:var(--ink-soft); font-size:15.3px;}
+  p:last-child{margin-bottom:0;}
+  p strong{color:var(--ink); font-weight:600;}
+  ul.plain{margin:8px 0 12px; padding-left:20px; color:var(--ink-soft); font-size:15px;}
+  ul.plain li{margin-bottom:5px;}
+
+  .term{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:.92em; color:var(--teal-deep); background:var(--teal-soft); border:1px solid #C7DEDA; padding:1px 7px; border-radius:4px; white-space:nowrap;}
+
+  .example{margin-top:14px; background:var(--amber-soft); border-left:3px solid var(--amber); border-radius:0 6px 6px 0; padding:14px 18px;}
+  .example .ex-label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); font-weight:600; display:block; margin-bottom:6px;}
+  .example p{color:#5A3E23; font-size:14.3px; margin:0;}
+
+  .define{margin:12px 0; background:#F5F9F8; border:1px solid var(--line); border-radius:8px; padding:14px 18px;}
+  .define .d-label{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); font-weight:600; display:block; margin-bottom:5px;}
+  .define p{font-size:14.5px; margin:0; color:var(--ink);}
+
+  .dim-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:16px;}
+  .dim{border:1px solid var(--line); border-radius:7px; padding:12px 14px; background:#FAFCFB;}
+  .dim .dim-title{font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600; color:var(--teal-deep); display:block; margin-bottom:3px;}
+  .dim p{font-size:13.5px; margin:0;}
+
+  .quad{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:16px;}
+  .quad .q{border-radius:8px; padding:14px 16px; border:1px solid var(--line);}
+  .quad .q.ordered{background:#F0F7F5;}
+  .quad .q.complex{background:#FBF1E7;}
+  .quad .q.chaotic{background:#FBEBEA;}
+  .quad .q.confused{background:#F1F1F5;}
+  .quad .q-title{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13px; display:block; margin-bottom:4px; color:var(--ink);}
+  .quad .q p{font-size:13px; margin:0; color:var(--ink-soft);}
+
+  .cap-table{display:flex; flex-direction:column; gap:8px; margin-top:16px;}
+  .cap-row{display:grid; grid-template-columns:150px 1fr; gap:14px; border:1px solid var(--line); border-radius:7px; padding:12px 16px; background:#FAFCFB; align-items:start;}
+  .cap-row .c-name{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13px; color:var(--teal-deep);}
+  .cap-row p{font-size:13.5px; margin:0;}
+
+  .dik{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px;}
+  .dik .col{border:1px solid var(--line); border-radius:8px; padding:14px 16px; background:#FAFCFB;}
+  .dik .col-title{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13px; color:var(--teal-deep); display:block; margin-bottom:6px;}
+  .dik p{font-size:13px; margin:0 0 8px;}
+  .dik p:last-child{margin-bottom:0;}
+  .dik .arrow-mid{display:flex; align-items:center; justify-content:center; color:var(--amber); font-size:20px;}
+
+  .quote{margin:12px 0; padding:14px 18px; border-left:3px solid var(--teal); background:var(--teal-soft); border-radius:0 6px 6px 0; font-style:italic; font-size:14.5px; color:var(--teal-deep);}
+
+  .scenario{margin-top:16px; border-top:1px dashed var(--line); padding-top:16px;}
+  .scenario .who{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:12.5px; color:var(--amber); display:block; margin-bottom:4px;}
+  .scenario p{font-size:14px; margin-bottom:10px;}
+
+  footer{text-align:center; margin-top:40px; color:var(--ink-soft); font-size:13px;}
+
+  @media (max-width:600px){
+    .dim-grid, .quad, .dik, .cap-row{grid-template-columns:1fr;}
+    .dik .arrow-mid{display:none;}
+    section.card{padding:24px 20px;}
+    header.hero{padding:44px 20px 32px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="eyebrow">ITIL Foundation · Version 5 · Chapter 2</span>
+  <h1 class="title">Four Dimensions<br>ของ <em>Product &amp; Service</em> Management</h1>
+  <p class="subtitle">สรุปบทที่ 2 แบบละเอียด ครบทุกหัวข้อย่อย (2.1–2.5) คงศัพท์เทคนิคไว้ พร้อมตัวอย่างและบทสนทนาจากเคส ITIL Car Rental ค่ะ</p>
+  <div class="hero-rule"></div>
+  <nav class="toc">
+    <a href="#s21">2.1 Intro</a>
+    <a href="#s22">2.2 Org &amp; People</a>
+    <a href="#s23">2.3 Value Streams</a>
+    <a href="#s24">2.4 Info &amp; Tech</a>
+    <a href="#s25">2.5 Partners</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- 2.1 -->
+  <section class="card" id="s21">
+    <div class="sec-head"><span class="sec-num">2.1</span><h2 class="sec-title">ทำไมต้องมองครบ 4 มิติ</h2></div>
+    <p>ประเด็นหลักของบทนี้คือ: จะปรับปรุงงานให้ดีขึ้น จะสร้าง product หรือ process ใหม่ ต้องมองให้ครบทุกมุม เพราะแต่ละมิติเพียงมิติเดียว "ไม่พอ" ที่จะสร้าง outcome ที่ต้องการ ITIL จึงกำหนด <strong>Four Dimensions</strong> ที่ต้องพิจารณาไปพร้อมกัน (ไม่มีลำดับความสำคัญตายตัว):</p>
+    <div class="dim-grid">
+      <div class="dim"><span class="dim-title">Organizations &amp; People</span><p>โครงสร้างทีม วัฒนธรรม ผู้นำ</p></div>
+      <div class="dim"><span class="dim-title">Information &amp; Technology</span><p>ข้อมูล ระบบ เครื่องมือ AI</p></div>
+      <div class="dim"><span class="dim-title">Partners &amp; Suppliers</span><p>ความสัมพันธ์กับ third party</p></div>
+      <div class="dim"><span class="dim-title">Value Streams &amp; Processes</span><p>วิธีทำงานจริงที่สร้างคุณค่า</p></div>
+    </div>
+    <p style="margin-top:14px;">ทั้ง 4 มิตินี้ยังถูกปัจจัยภายนอกกดดัน ซึ่ง ITIL อ้างอิงโมเดล <span class="term">PESTLE</span> (Political, Economic, Social, Technology, Legal, Environmental) เป็นตัวอย่างของปัจจัยที่ควบคุมไม่ได้โดยตรง</p>
+    <div class="example"><span class="ex-label">ตัวอย่าง</span><p>จะย้ายระบบ Network ไปใช้ SD-WAN ใหม่ ไม่ใช่แค่เรื่อง technology (มิติเดียว) แต่ต้องคิดด้วยว่าทีมมีทักษะพอไหม (Organizations &amp; People), ต้องพึ่ง vendor รายไหน (Partners), และขั้นตอนทำงานเปลี่ยนไปอย่างไร (Value Streams)</p></div>
+  </section>
+
+  <!-- 2.2 -->
+  <section class="card" id="s22">
+    <div class="sec-head"><span class="sec-num">2.2</span><h2 class="sec-title">Organizations and People</h2></div>
+    <p>มิตินี้เกี่ยวกับโครงสร้างองค์กร บทบาทหน้าที่ วัฒนธรรม และคนที่ทำงานอยู่ในนั้น — โครงสร้างที่เป็นทางการอย่างเดียวไม่พอ ต้องมี<strong>วัฒนธรรม</strong>ที่สนับสนุนเป้าหมายด้วย</p>
+
+    <h3 class="sub-title">2.2.1 Culture</h3>
+    <div class="define"><span class="d-label">Culture</span><p>ชุดค่านิยมร่วมของกลุ่มคน ที่แสดงออกผ่านพฤติกรรม ความเชื่อ และแนวปฏิบัติของพวกเขา</p></div>
+    <div class="define"><span class="d-label">Safety Culture</span><p>วัฒนธรรมองค์กรที่คนรู้สึกสบายใจที่จะ "เป็นตัวเอง" และแสดงความคิดเห็นได้เต็มที่</p></div>
+    <p>ใน safety culture คนจะกล้าชี้จุดเสี่ยงมากขึ้น เพราะไม่กลัวว่าจะเสียหน้า พฤติกรรมที่ควรส่งเสริม ได้แก่: ลงมือทำจริงเรื่อง safety (ไม่ใช่แค่พูด), กล้าแสดงจุดอ่อน/ขอความช่วยเหลือ, รับฟัง feedback, มีน้ำใจต่อกัน, และมองความล้มเหลวเป็นบทเรียนไม่ใช่การจับผิด</p>
+    <div class="example"><span class="ex-label">ตัวอย่าง</span><p>ทีม NOC ที่มี safety culture จริง วิศวกรที่เผลอ push config ผิดจน network ล่ม จะรีบแจ้งทีมทันทีเพื่อแก้ไข แทนที่จะปิดบังเพราะกลัวโดนตำหนิ — ผลคือแก้ปัญหาได้เร็วกว่า</p></div>
+
+    <h3 class="sub-title">2.2.2 Leadership</h3>
+    <p>ผู้นำที่ดี: สร้างแรงบันดาลใจด้วยความซื่อสัตย์, โฟกัสที่ value และปรับ priority ได้เมื่อจำเป็น, สร้างวัฒนธรรมที่ดีด้วยการทำตามค่านิยมองค์กรอย่างสม่ำเสมอ, สื่อสาร vision ชัดเจน, และให้ความสำคัญกับการเรียนรู้ต่อเนื่อง ผู้นำแบบ "Conscious Leader" จะรับฟังเพื่อ<em>เข้าใจ</em> ไม่ใช่แค่รอโต้ตอบ</p>
+
+    <h3 class="sub-title">2.2.3 Organizational Structure</h3>
+    <p>โครงสร้างองค์กรแบ่งได้หลายแบบ เช่น ตามภูมิศาสตร์ (รวมศูนย์/กระจาย), ตาม governance (hierarchical, community-based, market-like), หรือตามขอบเขตงาน (functional, product-based, project-based) แต่ทุกแบบจะมี: chain of command, roles/responsibilities, scope of control, decision-making authority, และ departments/teams</p>
+    <div class="define"><span class="d-label">Conway's Law</span><p>องค์กรที่ออกแบบระบบ มักจะได้ระบบที่มีโครงสร้างเหมือนโครงสร้างการสื่อสารขององค์กรเอง (คิดค้นโดย Melvin Conway ปี 1967)</p></div>
+    <p>พูดง่ายๆ คือสถาปัตยกรรมของ digital product มักจะ "สะท้อน" วิธีที่ทีมพัฒนาสื่อสารกัน บางองค์กรจึงใช้แนวทาง <span class="term">Reverse Conway</span> คือ ออกแบบโครงสร้างทีมก่อน เพื่อบังคับให้ product architecture ออกมาตามที่ต้องการ (เช่น ทีมเล็กแบบ multi-disciplinary ไม่เกิน 10 คน รับผิดชอบ full lifecycle ของ product ตัวเอง)</p>
+    <div class="example"><span class="ex-label">ตัวอย่าง</span><p>ถ้าทีม Network, ทีม Security และทีม Application แยกกันทำงานคนละไซโล ไม่คุยกัน ระบบที่ออกมาก็มักจะแยกเป็นส่วนๆ เชื่อมกันแบบหลวมๆ ตาม Conway's Law — พอดี ตรงกับที่ทีมสื่อสารกันแบบแยกส่วนนั่นเอง</p></div>
+
+    <h3 class="sub-title">2.2.4 Skills and Competencies</h3>
+    <p>นอกจาก technical skill แล้ว ITIL ยังเน้น "universal skills" เช่น <span class="term">Creativity</span>, <span class="term">Critical Thinking</span>, <span class="term">Teamwork</span>, <span class="term">Emotional Intelligence</span>, <span class="term">Adaptability</span>, <span class="term">Time Management</span>, <span class="term">Leadership</span> และ <span class="term">Stress Management</span> — องค์กรสามารถใช้ framework อย่าง <span class="term">e-CF</span> หรือ <span class="term">SFIA</span> เพื่อวางแผนสมรรถนะบุคลากรอย่างเป็นระบบ</p>
+
+    <h3 class="sub-title">2.2.5 Organizations, People and AI</h3>
+    <p>AI ช่วยได้ 3 เรื่องหลัก: <strong>Information processing</strong> (ประมวลผลข้อมูลจำนวนมากได้เร็ว), <strong>Pattern recognition</strong> (จับ pattern ที่คนมองไม่เห็น เช่น demand forecasting, incident detection), และ <strong>Reducing cognitive bias</strong> (ลดอคติในการตัดสินใจ เช่น การจ้างงาน หรือจัดลำดับความสำคัญงาน) แต่จุดที่มนุษย์ยังเหนือกว่าคือ ความคิดสร้างสรรค์ ความเข้าอกเข้าใจ และการเข้าใจบริบท</p>
+    <div class="quote">Max: "เราให้ความสำคัญกับ AI Governance มาก เพราะแม้เราไม่ได้ควบคุมระบบนำทางของรถขับเคลื่อนอัตโนมัติเอง แต่เรายังต้องรับผิดชอบความปลอดภัยของลูกค้า"</div>
+
+    <div class="scenario">
+      <span class="who">ITIL Car Rental — Organizations &amp; People</span>
+      <p>Max ตัดสินใจปรับโครงสร้างองค์กร โดยตั้ง <strong>product team ถาวร</strong> สำหรับแต่ละ product หลัก เพื่อให้มีทีมที่ดูแลพัฒนาต่อเนื่องและมีความเชี่ยวชาญเฉพาะทาง แทนที่จะทำงานแบบโปรเจกต์ชั่วคราว</p>
+    </div>
+  </section>
+
+  <!-- 2.3 -->
+  <section class="card" id="s23">
+    <div class="sec-head"><span class="sec-num">2.3</span><h2 class="sec-title">Value Streams and Processes</h2></div>
+    <p>มิตินี้ตอบคำถามว่า "องค์กรทำงานอะไรบ้าง" และ "จัดระเบียบงานอย่างไร" เพื่อส่งมอบคุณค่าอย่างมีประสิทธิภาพ โดยมี workflow อยู่ 2 ระดับ: ระดับ <span class="term">Management Practice</span> และระดับ <span class="term">Value Chain</span></p>
+
+    <h3 class="sub-title">คำศัพท์หลักที่ต้องแยกให้ออก</h3>
+    <div class="define"><span class="d-label">Process</span><p>ชุดกิจกรรมที่สัมพันธ์กัน ซึ่งเปลี่ยน input ให้เป็น output — อยู่ในระดับ management practice แต่ละ practice</p></div>
+    <div class="define"><span class="d-label">Value Chain Activities</span><p>กิจกรรมระดับสูงที่องค์กรใช้บริหารวงจรชีวิตของ product/service — มีทั้งหมด 8 กิจกรรม (รายละเอียดในบทที่ 4)</p></div>
+    <div class="define"><span class="d-label">Value Chain</span><p>ชุดกิจกรรมทั้งหมดที่ทำให้เกิดคุณค่าผ่านการส่งมอบ product หรือ service</p></div>
+    <div class="define"><span class="d-label">Value Stream</span><p>ลำดับขั้นตอนที่องค์กรใช้จริงในการสร้างและส่งมอบ product/service ให้ลูกค้า — คือ workflow "ที่ทำจริง" ต่างจาก process ที่เป็น workflow "ที่ออกแบบไว้"</p></div>
+    <p>Value stream ต้องถูก map วิเคราะห์ และปรับปรุงอย่างต่อเนื่อง (ไม่ใช่ทำครั้งเดียวจบ) เพราะ flow จริงจะแตกต่างจาก pattern ที่วางไว้เสมอ ขึ้นกับบริบท</p>
+
+    <div class="scenario">
+      <span class="who">ITIL Car Rental — Value Streams</span>
+      <p>Maria: ทีม booking กับทีมทำความสะอาดรถ coordinate กันไม่ดี ทำให้ลูกค้าไม่ได้รถตรงเวลา ทั้งที่แต่ละทีมทำงานตัวเองได้ดี — เมื่อใช้ <span class="term">Value Stream Mapping</span> วิเคราะห์ end-to-end ตั้งแต่ลูกค้าเปิดแอปจนก้าวออกจากรถ ก็เจอ bottleneck และแก้ปัญหาได้ Anna เสริมว่า value stream mapping ไม่ได้ช่วยแค่เรื่อง efficiency แต่ช่วยสร้าง <em>value</em> ให้ลูกค้าโดยตรงด้วย</p>
+    </div>
+
+    <h3 class="sub-title">2.3.2 Optimizing Workflows for Complexity</h3>
+    <div class="define"><span class="d-label">Complexity Thinking</span><p>แนวทางวิเคราะห์และตัดสินใจ โดยเข้าใจว่างานแต่ละแบบมีระดับความซับซ้อนต่างกัน</p></div>
+    <p>ITIL แบ่งบริบทของงานออกเป็น 4 แบบ:</p>
+    <div class="quad">
+      <div class="q ordered"><span class="q-title">Ordered</span><p>เหตุ-ผลชัดเจน คาดเดาได้ เช่น การอบเค้กตามสูตร — งาน routine ส่วนใหญ่อยู่ตรงนี้</p></div>
+      <div class="q complex"><span class="q-title">Complex</span><p>เข้าใจเหตุ-ผลได้แค่ย้อนหลัง เช่น การเลี้ยงลูก — องค์กรโดยรวมมักอยู่ในหมวดนี้</p></div>
+      <div class="q chaotic"><span class="q-title">Chaotic</span><p>วิกฤต ต้องตัดสินใจทันที เช่น ไฟไหม้ตึก ไม่มีเวลาวิเคราะห์</p></div>
+      <div class="q confused"><span class="q-title">Confused</span><p>จุดเริ่มต้นที่ยังไม่รู้ว่าสถานการณ์เป็นแบบไหนใน 3 แบบข้างต้น</p></div>
+    </div>
+    <p style="margin-top:14px;">ข้อสรุปสำคัญ: <strong>ห้ามใช้วิธีเดียวกับทุกสถานการณ์</strong> — แผนละเอียดที่ใช้ได้ดีใน ordered context จะกลายเป็นอุปสรรคใน chaotic context ดังนั้น process ใน ITIL Official Practice Guides ไม่ควร copy-paste ตรงๆ ต้องปรับให้เข้ากับบริบทองค์กร และควรออกแบบ process แบบให้พื้นที่ตัดสินใจได้ ไม่ตายตัวทั้งหมด</p>
+    <div class="example"><span class="ex-label">ตัวอย่าง (จากเอกสาร)</span><p>เทียบกับระบบนำทาง GPS ในรถ: เส้นทางที่ระบบแนะนำ = process ที่ออกแบบไว้ล่วงหน้า แต่คนขับยังต้องปรับความเร็ว หลบหลุม หรือเปลี่ยนเส้นทางตามสภาพจริง — process ที่ดีต้องเป็น "แนวทางระดับสูง" ให้คนตัดสินใจได้ ไม่ใช่สคริปต์ตายตัว</p></div>
+  </section>
+
+  <!-- 2.4 -->
+  <section class="card" id="s24">
+    <div class="sec-head"><span class="sec-num">2.4</span><h2 class="sec-title">Information and Technology</h2></div>
+    <p>มิตินี้ครอบคลุมข้อมูล สารสนเทศ และเทคโนโลยีที่ใช้ทั้งใน product/service เองและใน management system ขององค์กร</p>
+
+    <h3 class="sub-title">2.4.1.1 Artificial Intelligence — ITIL AI Capability Model (6C)</h3>
+    <p>ITIL เสนอโมเดลจัดหมวดหมู่การใช้งาน AI เป็น 6 ความสามารถ (ใช้จัด risk profile และ governance ได้ด้วย):</p>
+    <div class="cap-table">
+      <div class="cap-row"><span class="c-name">1. Creation</span><p>สร้างสิ่งใหม่ที่ไม่เคยมีมาก่อน เช่น generate release notes, ตอบคำถามผู้ใช้อัตโนมัติ</p></div>
+      <div class="cap-row"><span class="c-name">2. Curation</span><p>ช่วยหา เข้าใจ หรือปรับปรุงเนื้อหาเดิม เช่น สรุป incident ticket ให้ผู้บริหารอ่าน, แปลเอกสาร</p></div>
+      <div class="cap-row"><span class="c-name">3. Clarification</span><p>ปรับปรุงคุณภาพ/จัดระเบียบข้อมูลที่มีอยู่ เช่น ตรวจจับ knowledge base ที่ล้าสมัย, ลบข้อมูลซ้ำซ้อน</p></div>
+      <div class="cap-row"><span class="c-name">4. Cognition</span><p>หา pattern/ความผิดปกติในข้อมูล เช่น วิเคราะห์ major incident, พยากรณ์ปริมาณงานล่วงหน้า</p></div>
+      <div class="cap-row"><span class="c-name">5. Communication</span><p>เป็นตัวกลางให้ผู้ใช้โต้ตอบกับระบบ เช่น chatbot ช่วย support, virtual agent รับ request</p></div>
+      <div class="cap-row"><span class="c-name">6. Coordination</span><p>ลงมือทำ/สั่งการข้ามระบบเอง เช่น triage request ไปทีมที่เหมาะสม, escalate incident อัตโนมัติ</p></div>
+    </div>
+
+    <h3 class="sub-title">2.4.2 Data, Information, and Knowledge</h3>
+    <div class="dik">
+      <div class="col"><span class="col-title">Data</span><p>ข้อเท็จจริงดิบ ไม่มีความหมายในตัวเอง</p><p><em>เช่น</em> ค่าจาก sensor, ชื่อลูกค้า</p></div>
+      <div class="arrow-mid">→</div>
+      <div class="col"><span class="col-title">Information</span><p>ข้อมูลที่ถูกใส่บริบทแล้ว ตอบคำถาม who/what/when/where ได้</p><p><em>เช่น</em> รายงานยอดขาย</p></div>
+    </div>
+    <div class="dik" style="margin-top:10px;">
+      <div class="col"><span class="col-title">Knowledge</span><p>นำ information มาประยุกต์ใช้ เพิ่มความเข้าใจ/insight ช่วยตัดสินใจได้</p><p><em>เช่น</em> ความเชี่ยวชาญวินิจฉัยปัญหา</p></div>
+    </div>
+    <p style="margin-top:14px; font-size:14px;"><strong>ข้อควรระวัง:</strong> เส้นแบ่งระหว่าง 3 อย่างนี้ไม่ชัดเจนตายตัว ข้อมูลชิ้นเดียวกันอาจถูกจัดเป็นอย่างใดอย่างหนึ่งก็ได้ ขึ้นกับบริบทและมุมมองของผู้ใช้งาน</p>
+
+    <h3 class="sub-title">Data Governance</h3>
+    <div class="define"><span class="d-label">Data Governance</span><p>ระบบกฎ นโยบาย มาตรฐาน และการควบคุม ที่องค์กรใช้บริหารจัดการข้อมูลของตนอย่างมีประสิทธิภาพ</p></div>
+    <p>หลักการสำคัญ: <strong>Strategic alignment</strong> (สอดคล้องกับกลยุทธ์องค์กร), <strong>Accountability &amp; Ownership</strong> (มีเจ้าของข้อมูลชัดเจน), <strong>Defined policies</strong>, <strong>Transparency &amp; Auditability</strong>, <strong>Integrity</strong>, และ <strong>Adaptability</strong></p>
+
+    <h3 class="sub-title">2.4.3 Ensuring Value from Technology</h3>
+    <p>เพื่อให้ได้ value จริงจากเทคโนโลยี ต้องประเมิน capability ด้าน: Information security &amp; governance, Data access &amp; management, Data quality, Information/data legacy (ข้อมูลจะเป็นอย่างไรเมื่อระบบถูกปลดระวาง), Digital literacy, Leadership commitment, และ Technology infrastructure</p>
+
+    <div class="scenario">
+      <span class="who">ITIL Car Rental — Information &amp; Technology</span>
+      <p>Sam: เรามีระบบจัดการข้อมูลที่แข็งแรงและตรวจสอบสม่ำเสมอ (ข้อมูลบัตรประชาชน ใบขับขี่) แต่ Max เสริมว่าความท้าทายใหม่คือ AI Governance โดยเฉพาะระบบนำทางของรถขับเคลื่อนอัตโนมัติ — แม้ ICR ไม่ได้ควบคุมระบบนำทางเอง แต่ยังต้องรับผิดชอบความปลอดภัยลูกค้า จึงขอให้ผู้ผลิตรถยืนยัน AI governance system ของตัวเองด้วย</p>
+    </div>
+  </section>
+
+  <!-- 2.5 -->
+  <section class="card" id="s25">
+    <div class="sec-head"><span class="sec-num">2.5</span><h2 class="sec-title">Partners and Suppliers</h2></div>
+    <p>มิตินี้ครอบคลุมความสัมพันธ์กับองค์กรภายนอกที่เกี่ยวข้องกับการ discover, design, build, transition, operate, support หรือ improve product/service รวมถึงสัญญาและข้อตกลงต่างๆ ความสัมพันธ์มีได้ตั้งแต่สัญญาทางการแบบแยกความรับผิดชอบชัดเจน ไปจนถึง partnership แบบยืดหยุ่นที่แชร์เป้าหมายและความเสี่ยงร่วมกัน</p>
+    <p>องค์กรส่วนใหญ่อยู่ใน supply chain ที่ซับซ้อน (เป็นทั้งผู้ให้และผู้รับบริการพร้อมกัน) จึงอาจต้องมี <span class="term">Service Integrator</span> คอยประสานความสัมพันธ์เหล่านี้ ไม่ว่าจะทำเองภายในหรือมอบหมายให้ partner ที่ไว้ใจได้</p>
+
+    <h3 class="sub-title">ปัจจัยที่มีผลต่อกลยุทธ์การใช้ Supplier</h3>
+    <ul class="plain">
+      <li><strong>Strategic focus</strong> — โฟกัสที่ core competency แล้ว outsource ส่วนที่ไม่ใช่ core หรือไม่</li>
+      <li><strong>Corporate culture</strong> — องค์กรมีความเอนเอียงทางวัฒนธรรมต่อแนวทางใดแนวทางหนึ่งอยู่แล้วหรือไม่</li>
+      <li><strong>Resource scarcity</strong> — ทักษะ/ทรัพยากรที่ต้องการหายากแค่ไหน</li>
+      <li><strong>Cost concerns</strong> — คุ้มกว่าไหมถ้าซื้อจาก supplier</li>
+      <li><strong>Risk concerns</strong> — ความเสี่ยงจากการพึ่งพา supplier เทียบกับทำเอง</li>
+      <li><strong>Subject matter expertise</strong> — supplier มีความเชี่ยวชาญที่พัฒนาเองยากหรือไม่</li>
+      <li><strong>External constraints</strong> — กฎหมาย ข้อบังคับอุตสาหกรรม</li>
+      <li><strong>Demand patterns</strong> — ความต้องการที่ผันผวนตามฤดูกาล</li>
+    </ul>
+
+    <div class="scenario">
+      <span class="who">ITIL Car Rental — Partners &amp; Suppliers</span>
+      <p>Anna: กับผู้ผลิตรถขับเคลื่อนอัตโนมัติ ต้องมี deep integration และรับผิดชอบร่วมกัน เพราะเรื่อง safety และ reputation สำคัญมาก แต่กับผู้ให้บริการชาร์จไฟ แค่สัญญาพื้นฐานก็เพียงพอแล้ว เพราะสิ่งที่ต้องการคือความยืดหยุ่นและการครอบคลุมพื้นที่ ไม่ใช่ deep integration</p>
+    </div>
+    <div class="example"><span class="ex-label">ตัวอย่าง</span><p>เทียบกับงาน Network: การใช้ ISP รายใหญ่เป็นแค่สัญญา SLA มาตรฐาน (basic contract) แต่การร่วมมือกับ Security vendor เพื่อทำ SOC ร่วมกัน อาจต้องเป็น partnership แบบ deep integration ที่แชร์ข้อมูล incident กันตลอดเวลา</p></div>
+  </section>
+
+  <footer>สรุปจาก <span class="term">ITIL Foundation (V5)</span> · Chapter 2 — จัดทำเพื่อการทบทวนส่วนตัว</footer>
+
+</div>
+</body>
+</html>
